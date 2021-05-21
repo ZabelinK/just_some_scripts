@@ -21,7 +21,11 @@ number_of_files = 0
 for (dirpath, dirnames, filenames) in os.walk(sys.argv[1]):
     for file in filenames:
         full_file_path = dirpath + os.path.sep + file
-        file_size = os.path.getsize(full_file_path)
+        try:
+            file_size = os.path.getsize(full_file_path)
+        except Exception as e:
+            print(e)
+            continue
         size_of_all += file_size
         files.append(
                      {
